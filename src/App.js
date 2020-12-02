@@ -1,13 +1,10 @@
 import './App.css';
-import HomepageComponent from "./homepage.component"
+import HomepageComponent from "./pages/Home/homepage.component"
 
 function App() {
   return (
     <div className="App">
-      {/* header */}
       <HomepageComponent />
-      {/* products */}
-      {/* footer */}
     </div>
   );
 }
