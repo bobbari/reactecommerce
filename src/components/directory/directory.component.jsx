@@ -12,12 +12,10 @@ const DirectoryComponet = () => {
         <div className="directory-menu">
             {
                 (menu.length>0)?
-                    menu.map(({id,name,imageURL,size}) => (
+                    menu.map(({id, ...otherSectionProps }) => (
                         <MenuItemComponents 
                         key={id} 
-                        title={name} 
-                        image={imageURL}
-                        size={size}
+                        {...otherSectionProps} 
                         />
                     ))
                     :null
