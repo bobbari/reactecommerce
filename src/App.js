@@ -1,11 +1,11 @@
-import React,{useState,useEffect,Component} from "react";
+import React,{Component} from "react";
 import './App.css';
 import HomepageComponent from "./pages/Home/homepage.component"
 import ShopPage from './pages/shop/shop.component'
-import { Switch, Route, Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 import { Header } from "./components/header/Header.component";
 import SigninSignup from "./pages/signIn-signup/signin-signup.component"
-import {auth} from './FireBase/FireBase.utils'
+import {auth,createUserProfileDocument} from './FireBase/FireBase.utils'
 
 class App extends Component {
   constructor(props) {
@@ -16,17 +16,24 @@ class App extends Component {
     }
   }
   unSubsribeFromAuth = null;
+
   componentDidMount(){
-    auth.onAuthStateChanged((user)=>{
-      this.setState({
-        currentUser:user
-      })
-      console.log("user ", user);
+    this.unSubsribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+         userRef.onSnapshot((snapshot) => {
+           this.setState({ currentUser: { id: snapshot.id, ...snapshot.data() } }, () => console.log("user ", userAuth, "state ", this.state));
+          })
+          
+      }else{
+        this.setState({
+          currentUser:userAuth
+        })
+      }
     })
   }
   componentWillMount(){
     // this.unSubsribeFromAuth();
-    //  auth.signOut()
   }
   
   render(){

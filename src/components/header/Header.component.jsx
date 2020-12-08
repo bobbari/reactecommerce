@@ -12,17 +12,11 @@ export const Header = ({currentUser}) =>{
             <div className="options">
                 <Link className="option" to="/shop">Shop</Link>
                 <Link className="option" to="/shop">contact </Link>
-                <Link className="option" to="/signin-signup">
-                    {
-                        currentUser ? (
-                            <div onClick={()=>auth.signOut()}>
-                                Log out
-                            </div>
-                        ): (
-                                <Link t0="/signin-signup">Sign In</Link>
-                        )
-                    }
-                 </Link>
+                {
+                    currentUser ?
+                        <div onClick={() => auth.signOut()}>Log out</div>
+                        : <Link to="/signin-signup">Sign In</Link>
+                }
             </div>
         </div>
     )
