@@ -1,21 +1,26 @@
 import React, { Component } from 'react'
 import './sign-in.style.scss'
-import {FormInput} from '../form-input/form-input.component';
-import {CustomButton} from '../form-button/CustomButton.component';
-import { signInWithGoogle } from '../../FireBase/FireBase.utils'
+import { FormInput } from '../form-input/form-input.component';
+import { CustomButton } from '../form-button/CustomButton.component';
+import { auth,signInWithGoogle } from '../../FireBase/FireBase.utils'
 
 export default class Signin extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-             email:"",
-             password:""
+            email:"",
+            password:""
         }
     }
-    handleSubmit = (e) =>{
+    handleSubmit = async(e) =>{
         e.preventDefault();
-        console.log("on submit handler ", this.state);
+        const {email,password}= this.state;
+        await auth.signInWithEmailAndPassword(email,password)
+        .then((userDetails)=>{console.log("userDetails ",userDetails);
+            this.setState({email: "", password: ""})
+        })
+        .catch((err)=>{console.log("err ",err)});
     }
     handlerChange = (e) =>{
         const {name,value} = e.target
@@ -36,13 +41,8 @@ export default class Signin extends Component {
                         <FormInput type="password" name="password" value={this.state.password} label="Password" handleChange={this.handlerChange} required />
                     </div>
                     <div className="buttons">
-                    <CustomButton type="submit" label="login" >
-                        login
-                    </CustomButton>
-                    <CustomButton 
-                        onClick={signInWithGoogle}
-                        isGoogleSignIn={true}
-                         >Sign In with google</CustomButton>
+                    <CustomButton type="submit" >login</CustomButton>
+                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>Sign In with google</CustomButton>
                     </div>
                 </form>
             </div>
