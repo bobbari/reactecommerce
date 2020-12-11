@@ -2,8 +2,9 @@ import {Link} from 'react-router-dom';
 import {ReactComponent as Logo} from "../../assets/images/crown.svg"
 import  './Header.style.scss'
 import {auth} from '../../FireBase/FireBase.utils';
-
-export const Header = ({currentUser}) =>{
+import {connect} from 'react-redux'
+const Header = (props) =>{
+    console.log("header props ", props);
     return(
         <div className="header">
                 <Link className="logo-container" to="/">
@@ -13,7 +14,7 @@ export const Header = ({currentUser}) =>{
                 <Link className="option" to="/shop">Shop</Link>
                 <Link className="option" to="/shop">contact </Link>
                 {
-                    currentUser ?
+                    props.currentUser ?
                         <div onClick={() => auth.signOut()}>Log out</div>
                         : <Link to="/signin-signup">Sign In</Link>
                 }
@@ -21,4 +22,6 @@ export const Header = ({currentUser}) =>{
         </div>
     )
 }
+const mapStateToProps = (state) =>({currentUser:state.user.currentUser});
+export default connect(mapStateToProps, null)(Header); 
 

@@ -3,8 +3,9 @@ import './sign-in.style.scss'
 import { FormInput } from '../form-input/form-input.component';
 import { CustomButton } from '../form-button/CustomButton.component';
 import { auth,signInWithGoogle } from '../../FireBase/FireBase.utils'
+// import {connect} from 'react-redux'
 
-export default class Signin extends Component {
+class Signin extends Component {
     constructor(props) {
         super(props)
     
@@ -13,6 +14,7 @@ export default class Signin extends Component {
             password:""
         }
     }
+    
     handleSubmit = async(e) =>{
         e.preventDefault();
         const {email,password}= this.state;
@@ -27,7 +29,8 @@ export default class Signin extends Component {
         this.setState({
              [name]:value
         })
-    }    
+    }
+    
     render() {
         return (
             <div className="sign-in">
@@ -42,10 +45,13 @@ export default class Signin extends Component {
                     </div>
                     <div className="buttons">
                     <CustomButton type="submit" >login</CustomButton>
-                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>Sign In with google</CustomButton>
+                        <CustomButton onClick={() => signInWithGoogle()} isGoogleSignIn={true}>Sign In with google</CustomButton>
                     </div>
                 </form>
             </div>
         )
     }
 }
+
+
+export default Signin

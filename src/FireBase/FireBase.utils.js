@@ -17,6 +17,7 @@ if (!firebase.apps.length) {
 } else {
     firebase.app(); // if already initialized, use that one
 }
+// firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 
@@ -26,7 +27,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 provider.setCustomParameters({prompt:"select_account"});
 
-export const signInWithGoogle = ()=>auth.signInWithPopup(provider);
+export const signInWithGoogle = () =>{auth.signInWithPopup(provider)};
 
 export const createUserProfileDocument = async (auth, additionalDate) =>{
     console.log("Auth ", auth)
@@ -34,9 +35,10 @@ export const createUserProfileDocument = async (auth, additionalDate) =>{
         // if no user(auth) was found
         return
     }
+   
     const userRef = firestore.doc(`users/${auth.uid}`);
     const snapshot = userRef.get();
-    console.log("snapshots ", snapshot);
+    // console.log("snapshots ", snapshot);
     if (!snapshot.exists) {
         const {displayName, email } = auth;
         const createAt = new Date();
