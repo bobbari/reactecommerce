@@ -4,7 +4,7 @@ import  './Header.style.scss'
 import {auth} from '../../FireBase/FireBase.utils';
 import {connect} from 'react-redux'
 const Header = (props) =>{
-    console.log("header props ", props);
+   
     return(
         <div className="header">
                 <Link className="logo-container" to="/">
@@ -15,8 +15,8 @@ const Header = (props) =>{
                 <Link className="option" to="/shop">contact </Link>
                 {
                     props.currentUser ?
-                        <div onClick={() => auth.signOut()}>Log out</div>
-                        : <Link to="/signin-signup">Sign In</Link>
+                        <div className="option" onClick={() => auth.signOut()}>Log out</div>
+                        : <Link className="option" to="/signin-signup">Sign In</Link>
                 }
             </div>
         </div>
