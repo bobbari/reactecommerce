@@ -1,4 +1,4 @@
-import * as userType from './user.type'
+import * as userType from './user.types'
 
 const initial_state ={
     currentUser:""

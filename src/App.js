@@ -56,5 +56,7 @@ class App extends Component {
   }
 }
 const mapStateToProps = ({user}) =>({ currentUser: user.currentUser })
-const mapDispatchToProps = dipatch=>({setCurrentUser: (user) => dipatch(setCurrentUser(user))})
+const mapDispatchToProps = dipatch=>(
+  {setCurrentUser: (user) => dipatch(setCurrentUser(user))}
+  )
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
