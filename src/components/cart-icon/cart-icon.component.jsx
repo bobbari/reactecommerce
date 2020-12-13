@@ -6,15 +6,20 @@ import {ReactComponent as ShoppingBag} from '../../assets/images/shopping-bag.sv
 import { CartDropdownToggle} from '../../redux/cart/cart.action';
 
 import './cart-icon.styles.scss';
-const CartIcon = (props) => {
+const CartIcon = ({cartItem,toggleCartDropDown}) => {
     return (
-        <div className="cart-icon" onClick={() => props.toggleCartDropDown()}>
+        <div className="cart-icon" onClick={() => toggleCartDropDown()}>
             <ShoppingBag className="shopping-icon"/>
-            <span className="item-count">0</span>
+            <span className="item-count">
+                {cartItem.length}
+            </span>
         </div>
     )
 }
+const mapStateToProps = ({cart:{cartItem}}) =>({
+    cartItem
+})
 const mapDispatchToProps = dispatch =>({
     toggleCartDropDown: () => dispatch(CartDropdownToggle())
 })
-export default connect(null, mapDispatchToProps)(CartIcon)
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon)

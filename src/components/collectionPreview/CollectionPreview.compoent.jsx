@@ -12,7 +12,10 @@ function PreviewCollection({id, ...otherProps}) {
                     items
                         .filter((item, index) => index < 4)
                         .map((item) => (
-                            <CollectionIten key={item.id} {...item} />
+                            <CollectionIten 
+                            key={item.id} 
+                            {...item} 
+                            item={item} />
                         ))
                 }
             </div>

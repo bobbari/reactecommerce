@@ -10,7 +10,7 @@ import {auth} from '../../FireBase/FireBase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart/cart-dropdown/cart-dropdown.component'
 
-const Header = ({currentUser,hidden}) =>{
+const Header = ({ currentUser, hidden, cartItem}) =>{
     // console.log("props ", currentUser, hidden);
     return( 
         <div className="header">
@@ -36,6 +36,7 @@ const Header = ({currentUser,hidden}) =>{
 const mapStateToProps = ({ user: { currentUser }, cart: { hidden}}) =>({
     currentUser,
     hidden
+    
 });
 
 export default connect(mapStateToProps, null)(Header); 
