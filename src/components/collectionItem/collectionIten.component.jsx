@@ -7,7 +7,9 @@ import {addItem} from '../../redux/cart/cart.action'
 import './collectionItem.style.scss'
 import {CustomButton} from '../form-button/CustomButton.component';
 
-const CollectionIten = ({ id, name, imageUrl, price,item, addToCart}) => {
+const CollectionIten = ({item, addToCart}) => {
+    console.log(item);
+    const { id, name, imageUrl, price } = item;
     return (
         <div className="collection-item">
             <div className="image" style={{ backgroundImage: `url(${imageUrl})`}}>
