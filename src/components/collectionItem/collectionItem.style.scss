@@ -5,6 +5,7 @@
   height: 350px;
   align-items: center;
   position: relative;
+  
 
   .image {
     width: 100%;
@@ -12,6 +13,8 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+    border-radius:10px;
+    box-shadow: 5px 0px 15px 1px #888888;
   }
 
   .custom-button {
