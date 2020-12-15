@@ -1,6 +1,6 @@
 import React from 'react'
 import './CollectionPreview.styles.scss';
-import CollectionIten from '../collectionItem/collectionIten.component'
+import CollectionIten from '../collectionItem/collectionItem.component'
 
 function PreviewCollection({id, ...otherProps}) {
     const { title, items} = otherProps;

@@ -8,8 +8,7 @@ import './collectionItem.style.scss'
 import {CustomButton} from '../form-button/CustomButton.component';
 
 const CollectionIten = ({item, addToCart}) => {
-    console.log(item);
-    const { id, name, imageUrl, price } = item;
+    const {  name, imageUrl, price } = item;
     return (
         <div className="collection-item">
             <div className="image" style={{ backgroundImage: `url(${imageUrl})`}}>
