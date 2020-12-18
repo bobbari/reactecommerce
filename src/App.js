@@ -1,10 +1,12 @@
+// system dependence
 import React,{Component} from "react";
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router'
+// import {withRouter} from 'react-router'
 import { Switch, Route,Redirect} from "react-router-dom";
 import {auth,createUserProfileDocument} from './FireBase/FireBase.utils'
 import {createStructuredSelector} from 'reselect'
 
+// user defined import
 import './App.css';
 import HomepageComponent from "./pages/Home/homepage.component"
 import ShopPage from './pages/shop/shop.component'
@@ -26,7 +28,7 @@ class App extends Component {
          userRef.onSnapshot((snapshot) => {
            setCurrentUser({ id: snapshot.id, ...snapshot.data() });
            if (snapshot.id) {
-             this.props.history.push("/")
+            //  this.props.history.push("/")
            }
           })
           
@@ -47,10 +49,9 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomepageComponent} />
-          <Route exact path="/shop" component={ShopPage} />
+          <Route path="/shop" component={ShopPage} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/signin-signup" 
-          render={() => (this.props.currentUser) ? <Redirect to="/shop" /> : <SigninSignup /> }/>
+          <Route exact path="/signin-signup" render={() => (this.props.currentUser) ? <Redirect to="/" /> : <SigninSignup /> }/>
         </Switch>
       </div>
     );
@@ -61,4 +62,4 @@ const mapStateToProps = createStructuredSelector({currentUser:selectCurrentUser}
 
 const mapDispatchToProps = dipatch=>({setCurrentUser: (user) => dipatch(setCurrentUser(user))})
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

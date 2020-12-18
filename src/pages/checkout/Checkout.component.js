@@ -59,6 +59,6 @@ const mapStateToProps = createStructuredSelector(
     }
 )
 
-// const mapDispatchToProps = {}
+
 
 export default connect(mapStateToProps, null)(Checkout)

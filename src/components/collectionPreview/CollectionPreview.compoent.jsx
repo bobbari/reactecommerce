@@ -4,6 +4,7 @@ import CollectionIten from '../collectionItem/collectionItem.component'
 
 function PreviewCollection({id, ...otherProps}) {
     const { title, items} = otherProps;
+    console.log('items ', items);
     return (
         <div className='collection-preview'>
             <h1 className='title'>{title}</h1>
