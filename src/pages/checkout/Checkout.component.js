@@ -40,8 +40,11 @@ export const Checkout = ({ cartItems, cartTotal }) => {
             }
             <div className="total">
                 total : ${cartTotal}
+                <div>
+                     <StripeButton price={cartTotal} />
+                </div>
             </div>
-            <StripeButton price={cartTotal} />
+            
         </div>
     )
 }

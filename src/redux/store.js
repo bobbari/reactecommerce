@@ -9,7 +9,11 @@ import {persistStore} from 'redux-persist'
 // logger is for  debugging the state(redux) and its change 
 import logger from "redux-logger";
 //array of middleware
-const middleWares = [logger]
+const middleWares = []
+
+if (process.env.NODE_ENV === "development"){
+    middleWares.push(logger)
+}
 
 //create store
 export const store = createStore(rootReducer, applyMiddleware(...middleWares));
