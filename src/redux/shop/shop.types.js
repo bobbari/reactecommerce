@@ -1,0 +1,3 @@
+export const SHOP_TYPE = {
+    UPDATA_SHOPDATA: 'UPDATA_SHOPDATA'
+}

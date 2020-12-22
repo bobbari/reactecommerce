@@ -16,6 +16,10 @@ Reselect (for state normalization)
 
 FireBase (as a backend)
 
+stripe (for payments)
+
+styled Component (for css in js)
+
 google Authentication (for login with google)
 
 

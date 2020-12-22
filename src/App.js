@@ -3,7 +3,7 @@ import React,{Component} from "react";
 import {connect} from 'react-redux';
 // import {withRouter} from 'react-router'
 import { Switch, Route,Redirect} from "react-router-dom";
-import {auth,createUserProfileDocument} from './FireBase/FireBase.utils'
+import {auth,createUserProfileDocument,AddCollectionsAndDocuments} from './FireBase/FireBase.utils'
 import {createStructuredSelector} from 'reselect'
 
 // user defined import
@@ -12,16 +12,17 @@ import HomepageComponent from "./pages/Home/homepage.component"
 import ShopPage from './pages/shop/shop.component'
 import Header from "./components/header/Header.component";
 import SigninSignup from "./pages/signIn-signup/signin-signup.component"
-import { setCurrentUser} from './redux/user.action'
+import {setCurrentUser} from './redux/user.action'
 import {selectCurrentUser} from './redux/user.selector'
 import Checkout from './pages/checkout/Checkout.component'
+import { selectCollectionForPreview} from './redux/shop/shop.selector'
 
 class App extends Component {
   
   unSubsribeFromAuth = null;
-
+  
   componentDidMount(){
-    const { setCurrentUser} =  this.props;
+    const { setCurrentUser,CollectionsArray} =  this.props;
     this.unSubsribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -33,10 +34,11 @@ class App extends Component {
           })
           
       }else{
-        
         setCurrentUser(userAuth );
       }
     })
+   
+    // AddCollectionsAndDocuments("collections", CollectionsArray.map(({ title, items }) => ({ title, items })))
   }
   componentWillMount(){
     
@@ -58,7 +60,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({currentUser:selectCurrentUser})
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser,
+  // CollectionsArray:selectCollectionForPreview
+})
 
 const mapDispatchToProps = dipatch=>({setCurrentUser: (user) => dipatch(setCurrentUser(user))})
 

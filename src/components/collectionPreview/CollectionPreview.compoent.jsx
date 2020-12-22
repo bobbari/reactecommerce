@@ -1,10 +1,9 @@
 import React from 'react'
 import './CollectionPreview.styles.scss';
-import CollectionIten from '../collectionItem/collectionItem.component'
+import CollectionItem from '../collectionItem/collectionItem.component'
 
 function PreviewCollection({id, ...otherProps}) {
     const { title, items} = otherProps;
-    console.log('items ', items);
     return (
         <div className='collection-preview'>
             <h1 className='title'>{title}</h1>
@@ -13,7 +12,7 @@ function PreviewCollection({id, ...otherProps}) {
                     items
                         .filter((item, index) => index < 4)
                         .map((item) => (
-                            <CollectionIten 
+                            <CollectionItem 
                             key={item.id} 
                             {...item} 
                             item={item} />

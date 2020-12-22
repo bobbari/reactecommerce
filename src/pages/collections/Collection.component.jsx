@@ -5,8 +5,8 @@ import { selectionCollection} from '../../redux/shop/shop.selector';
 import CollectionItem from '../../components/collectionItem/collectionItem.component';
 import './Collection.styles.scss';
 
-const CollectionPage = ({  collection}) => {
-   
+const CollectionPage = ({collection}) => {
+   console.log("collection ", collection);
     const { title, items} = collection;
   
     return (
@@ -20,9 +20,12 @@ const CollectionPage = ({  collection}) => {
         </div>
     )
 }
-const mapStateToProps = (state, PropsValue)=>({
-    collection: selectionCollection(PropsValue.match.params.collectionId)(state)
-})
+const mapStateToProps = (state, PropsValue)=>(
+    // console.log('params ', PropsValue.match.params.collectionId,'state ',state)
+    {
+    collection: selectionCollection(PropsValue.match.params.collectionId)(state),
+    }
+)
 export default connect(mapStateToProps)(CollectionPage)
 
 

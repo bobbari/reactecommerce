@@ -1,35 +1,36 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect';
 
 import {ReactComponent as Logo} from "../../assets/images/crown.svg"
-import  './Header.style.scss'
+// import  './Header.style.scss'
 import {auth} from '../../FireBase/FireBase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart/cart-dropdown/cart-dropdown.component'
 import { selectCurrentUser } from '../../redux/user.selector';
 import { selectCartDropdown } from '../../redux/cart/cart.selector'
+import { HeaderDiv, LogoContainer, OptionsContainer, OptionsLink, OptionsDiv} from './Header.styles';
 
 const Header = ({ currentUser, hidden, cartItem}) =>{
     return( 
-        <div className="header">
-                <Link className="logo-container" to="/">
+        <HeaderDiv>
+            <LogoContainer to="/">
                     <Logo  className="logo"/>
-                </Link>
-            <div className="options">
-                <Link className="option" to="/shop">Shop</Link>
-                <Link className="option" to="/shop">contact </Link>
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionsLink to="/shop">Shop</OptionsLink>
+                <OptionsLink to="/shop">contact </OptionsLink>
                 {
                     currentUser ?
-                        <div className="option" onClick={() => auth.signOut()}>Log out</div>
-                        : <Link className="option" to="/signin-signup">Sign In</Link>
+                        <OptionsLink as='div' onClick={() => auth.signOut()}>Log out</OptionsLink>
+                        : <OptionsLink  to="/signin-signup">Sign In</OptionsLink>
                 }
                 <CartIcon  />
                 {hidden?<CartDropdown />:null}
                
-            </div>
-        </div>
+            </OptionsContainer>
+        </HeaderDiv>
     )
 }
 // const mapStateToProps = ({ user: { currentUser }, cart: { hidden}}) =>({
