@@ -6,7 +6,6 @@ import CollectionItem from '../../components/collectionItem/collectionItem.compo
 import './Collection.styles.scss';
 
 const CollectionPage = ({collection}) => {
-   console.log("collection ", collection);
     const { title, items} = collection;
   
     return (
@@ -21,11 +20,11 @@ const CollectionPage = ({collection}) => {
     )
 }
 const mapStateToProps = (state, PropsValue)=>(
-    // console.log('params ', PropsValue.match.params.collectionId,'state ',state)
     {
     collection: selectionCollection(PropsValue.match.params.collectionId)(state),
     }
 )
+
 export default connect(mapStateToProps)(CollectionPage)
 
 

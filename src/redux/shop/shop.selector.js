@@ -8,13 +8,22 @@ export const selectCollectionSection = createSelector(
 )
 export const selectCollectionForPreview =createSelector(
     [selectCollectionSection],
-    (collections) => Object.values(collections)// or
+    (collections) => collections ? Object.values(collections):[]// or
     // (collections) => Object.keys(collections).map((key) => collections[key])
 )
 
 export const selectionCollection = collectionUrlParam => createSelector(
     [selectCollectionSection],
-    (collections) => collections[collectionUrlParam]
+    (collections) => collections ? collections[collectionUrlParam] :[]
     // (collections) => collections.find((collection) => ( collection.id === COLLECTION_ID_MAP[collectionUrlParam]))
 )
 
+export const selectCollectionFetching = createSelector(
+    [selectCollection],
+    shop=>shop.isLoading
+)
+
+export const selectCollectionIsLoading = createSelector(
+    [selectCollection],
+    shop=>!!shop.collections
+)

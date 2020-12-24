@@ -1,7 +1,7 @@
 // import {createDispatchHook,createSelectorHook,createStoreHook} from 'react-redux';
 
 import { createStore,applyMiddleware } from "redux";
-
+import thunk from 'redux-thunk'
 import rootReducer from './root-reducer';
 
 import {persistStore} from 'redux-persist'
@@ -9,7 +9,7 @@ import {persistStore} from 'redux-persist'
 // logger is for  debugging the state(redux) and its change 
 import logger from "redux-logger";
 //array of middleware
-const middleWares = []
+const middleWares = [thunk]
 
 if (process.env.NODE_ENV === "development"){
     middleWares.push(logger)

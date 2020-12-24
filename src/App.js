@@ -40,8 +40,8 @@ class App extends Component {
    
     // AddCollectionsAndDocuments("collections", CollectionsArray.map(({ title, items }) => ({ title, items })))
   }
-  componentWillMount(){
-    
+  componentWillUnmount(){
+    this.unSubsribeFromAuth()
     // auth.signOut();
   }
   
